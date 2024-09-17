@@ -13,6 +13,8 @@ DummyDataForgeは、Ollamaモデルを使用してダミーデータを生成す
 Ollamaモデルは、コマンドライン引数を使用して指定することができます。
 `./run.sh <モデル名>`
 
+[ollamaモデル検索ページ](https://ollama.com/library)
+
 ## カスタマイズ方法
 
 pythonスクリプトを変更する場合、docker コンテナイメージをビルドしないと反映されません。
