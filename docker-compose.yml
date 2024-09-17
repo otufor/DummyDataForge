@@ -1,0 +1,49 @@
+version: '3.8'  # 使用する Docker Compose バージョン
+
+services:
+  dummydataforge:
+    build: .  # 現在のディレクトリで Dockerfile をビルド
+    container_name: dummydataforge
+    volumes:
+      - ./input:/app/input  # ローカルの input ディレクトリをコンテナ内の /app/input にマウント
+      - ./output:/app/output  # ローカルの output ディレクトリをコンテナ内の /app/output にマウント
+    depends_on:
+      ollama:
+        condition: service_healthy  # ollama サービスがヘルスチェックに合格した後に起動
+    restart: "no"  # コンテナが停止したとき自動再起動しない
+    command: python /app/dummydataforge.py
+    networks:
+      - ollama-network
+
+  ollama:
+    # image: ollama/ollama  # Ollama イメージを使用
+    build:
+      context: .
+      dockerfile: Dockerfile-ollama
+    container_name: ollama
+    environment:
+      - OLLAMA_MODELS=/app/OLLAMA_MODELS
+    volumes:
+      - ./OLLAMA_MODELS:/app/OLLAMA_MODELS
+    ports:
+      - "11434:11434"  # ホストの 11434 番ポートをコンテナの 11434 番ポートにマップ
+    restart: "no"  # ollama コンテナが停止した場合、再起動しない
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434"]  # ポート 11434 で動作しているかチェック
+      interval: 5s  # ヘルスチェックの間隔 
+      timeout: 5s  # ヘルスチェックのタイムアウト
+      retries: 5  # 最大 リトライ
+      start_period: 5s  # 起動後、最初のチェックまでの待機時間
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    networks:
+      - ollama-network
+
+networks:
+  ollama-network:
+    driver: bridge

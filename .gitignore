@@ -1,0 +1,4 @@
+/input/*
+/output/*
+/OLLAMA_MODELS/*
+!/**/.gitkeep
