@@ -4,8 +4,10 @@ DummyDataForgeは、Ollamaモデルを使用してダミーデータを生成す
 
 ## 使い方
 
-1. `docker-compose up -d ollama` を実行してOllamaコンテナを起動します。
-2. `docker-compose run --rm dummydataforge` を実行してダミーデータを生成します。
+1. inputディレクトリにcsvファイルを配置してください。
+2. `docker-compose up -d ollama` を実行してOllamaコンテナを起動します。
+3. `docker-compose run --rm dummydataforge` を実行してダミーデータを生成します。
+4. outputディレクトリに、ダミーデータが生成されたcsvファイルが保存されます。
 
 ## 必要なファイル
 
@@ -16,7 +18,7 @@ DummyDataForgeは、Ollamaモデルを使用してダミーデータを生成す
 
 ## Ollamaモデル
 
-Ollamaモデルは、`OLLAMA_MODELS` ディレクトリに配置する必要があります。
+Ollamaモデルは、pullにより `OLLAMA_MODELS` ディレクトリに配置されます。
 
 ## ダミーデータ生成
 
@@ -38,7 +40,8 @@ def process_file(input_file, output_file, model):
 
 ## Ollamaモデルダウンロード
 
-Ollamaモデルは、`pull_model` 関数によってダウンロードされます。
+Ollamaモデルは、`pull_model` 関数によって自動的にダウンロードされます。
+pullされていないモデルが指定された場合は、ダウンロードに時間がかかります。
 
 ```python
 def pull_model(model):
@@ -50,3 +53,10 @@ def pull_model(model):
     response = requests.post(url, data=data)
     print(f"Complete pull model: {model}")
 ```
+
+## 注意点
+
+* ダミーデータ生成は、ローカルのOllamaモデルを使用して行われます。
+* 使用するモデルによって、データ品質にばらつきがあります。
+* 実行環境によって最適なモデルは異なります。適宜、使用するモデルやプロンプトを変更してください。
+* 生成されるデータのフォーマットは安定していません。数回やり直して、適切なデータが生成されるまで試行錯誤してください。
