@@ -54,6 +54,11 @@ def pull_model(model):
     print(f"Complete pull model: {model}")
 ```
 
+## カスタマイズ方法
+
+pythonスクリプトを変更する場合、docker コンテナイメージをビルドしないと反映されません。
+`docker compose build` を実行してから、`docker compose run --rm dummydataforge` を実行してください。
+
 ## 注意点
 
 * ダミーデータ生成は、ローカルのOllamaモデルを使用して行われます。
