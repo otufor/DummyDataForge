@@ -146,7 +146,7 @@ def process_with_ollama(text, model="llama2"):
         try:
             # print(f"url: {url}")
             # print(f"data: {data}")
-            response = requests.post(url, json=jsondata, timeout=100)
+            response = requests.post(url, json=jsondata, timeout=1200)
             # response = requests.post(url, data=data, timeout=100)
             response.raise_for_status()
             # print(f"response: {response.json()}")
@@ -167,7 +167,7 @@ def process_with_ollama(text, model="llama2"):
         except requests.exceptions.HTTPError as e:
                 print(f"HTTP error occurred: {e}")
                 print(f"URL: {url}")
-                print(f"Data: {data}")
+                print(f"Data: {jsondata}")
         except requests.exceptions.RequestException as e:
             if attempt < max_retries - 1:
                 print(f"Error connecting to Ollama. Retrying in {retry_delay} seconds...")
@@ -217,12 +217,16 @@ def pull_model(model):
     # print(response.json())
     print(f"Complete pull model: {model}")
 
-def main():
+def main(model=None):
     input_dir = "/app/input"
     output_dir = "/app/output"
-    model = "7shi/tanuki-dpo-v1.0:8b-q6_K"  # 使用するモデル名
-    model = "phi3.5"  # 使用するモデル名
-    
+    if not model:
+        model = "7shi/tanuki-dpo-v1.0:8b-q6_K"
+        model = "lucas2024/karakuri-lm-8x7b-instruct-v0.1:q5_k_m"
+        model = "phi3.5"
+        model = "phi3.5:3.8b-mini-instruct-q8_0"
+        model = "7shi/borea-phi-3.5-coding:3.8b-mini-instruct-q6_K"
+        model = "7shi/borea-phi-3.5-jp:3.8b-mini-instruct-q6_K"
     
     # input ディレクトリ内のすべてのファイルを処理
     for input_file in glob.glob(os.path.join(input_dir, '*')):
@@ -237,4 +241,5 @@ def main():
     print("全ファイルの処理が完了しました。")
 
 if __name__ == "__main__":
-    main()
+    import sys
+    main(model=sys.argv[1])
