@@ -228,8 +228,12 @@ def main(model=None):
         model = "7shi/borea-phi-3.5-coding:3.8b-mini-instruct-q6_K"
         model = "7shi/borea-phi-3.5-jp:3.8b-mini-instruct-q6_K"
     
-    # input ディレクトリ内のすべてのファイルを処理
+    # input ディレクトリ内のファイルを処理
     for input_file in glob.glob(os.path.join(input_dir, '*')):
+        # .git* ファイルは処理対象外
+        if os.path.basename(input_file).startswith('.git'):
+            continue
+
         filename = os.path.basename(input_file)
         name, ext = os.path.splitext(filename)
         output_file = os.path.join(output_dir, f"{name}_dummy{ext}")
