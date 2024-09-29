@@ -1,5 +1,3 @@
-version: '3.8'  # 使用する Docker Compose バージョン
-
 services:
   dummydataforge:
     build: .  # 現在のディレクトリで Dockerfile をビルド

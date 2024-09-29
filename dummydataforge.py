@@ -227,6 +227,7 @@ def main(model=None):
         model = "phi3.5:3.8b-mini-instruct-q8_0"
         model = "7shi/borea-phi-3.5-coding:3.8b-mini-instruct-q6_K"
         model = "7shi/borea-phi-3.5-jp:3.8b-mini-instruct-q6_K"
+        model = "qwen2.5"
     
     # input ディレクトリ内のファイルを処理
     for input_file in glob.glob(os.path.join(input_dir, '*')):
