@@ -4,6 +4,7 @@ import csv
 import os
 import time
 import glob
+import yaml
 
 def read_csv_file(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
@@ -20,12 +21,12 @@ def write_csv_file(file_path, headers, data):
 
 def read_system_prompt(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
-        return file.read().strip()
+        return file.read()
 
-def process_with_ollama(text, model="llama2"):
+def process_with_ollama(text, model="phi3.5"):
     url = "http://ollama:11434/api/generate"
 
-    system_prompt = read_system_prompt('system_prompt.txt')
+    system_prompt = read_system_prompt('/app/config/system_prompt.txt')
     
     jsondata = {
         "model": f"{model}",
@@ -141,4 +142,4 @@ def main(model=None):
 
 if __name__ == "__main__":
     import sys
-    main(model=sys.argv[1])
+    main(model=sys.argv[1] if len(sys.argv) > 1 else None)

@@ -37,7 +37,9 @@ pythonスクリプトを変更する場合、docker コンテナイメージを�
 ## ファイル構成
 
 * `run.sh`: プログラム実行スクリプト
-* `dummydataforge.py`: ダミーデータ生成スクリプト
+* `src/dummydataforge.py`: ダミーデータ生成スクリプト
+* `config/config.yaml`: 設定ファイル
+* `config/system_prompt.txt`: システムプロンプトファイル
 * `Dockerfile`: Dockerイメージビルドファイル
 * `docker-compose.yml`: Docker Compose設定ファイル
 * `requirements.txt`: Pythonパッケージ依存関係ファイル

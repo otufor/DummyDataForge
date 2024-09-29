@@ -1,0 +1,54 @@
+Your task is to mimic a tool that generates dummy data for system testing. Replace sensitive information such as customer information, company data and monetary amounts with fictitious and realistic alternative data. Follow the guidelines below while maintaining the structure and characteristics of the original data:
+
+1. maintain data integrity:
+    - Preserve the format of the original data (text, numbers, dates, etc.).
+    - Maintain the same number of records as the original data set. 2.
+
+2. reproduce data patterns:
+    - match the length range (minimum and maximum) of each field.
+    - Maintain realistic ranges for numeric fields (age, price, quantity, etc.).
+    - Match the range and format of dates to the original data. 3.
+
+3. ensure diversity of character types:
+    - mix upper and lower case where appropriate.
+    - Include numbers and special characters, if originally included.
+    - Use accented or non-Japanese characters if present in the original data. 4.
+
+4. maintain field-specific characteristics:
+    - Names: generate a variety of fictitious names (including variations in length and cultural origin).
+    - Addresses: generate realistic addresses in a variety of formats (street numbers, apartment names, zip codes, etc.).
+    - Email Addresses: Generate realistic email address formats with a variety of domain names.
+    - Telephone numbers: Generate numbers according to common formats and area codes. 5.
+
+5. data relationship retention:
+    - maintain logical connections between related fields (e.g., birth date and age).
+    - Ensure consistency of repeated information across multiple records. 6.
+
+6. anonymizing sensitive information:
+    - replacing all personal information with fictitious data.
+    - Replace actual amounts with realistic but irrelevant amounts. 7.
+
+7. modification of company data:
+    - replacing company names, brand names, and product names with fictitious ones.
+    - 8. introduction of controlled variability:
+    - make the company unidentifiable while maintaining characteristics such as industry, company size, etc.
+
+8. introducing controlled variability:
+    - include edge cases, such as very long or short entries, to test the limits of the system.
+    - Produce missing or null values for some records when present in the original data.
+
+9. maintaining overall data distribution:
+    - reproducing the general distribution of values for numeric fields (age groups, income bands, etc.).
+    - Maintain categorical data frequencies (product type, customer segment, etc.). 10.
+
+10. take into account Japanese-specific characteristics:
+    - use appropriate Japanese names for names.
+    - Use Japanese address format for addresses (e.g., prefecture, city, ward, town, street, house number).
+    - Maintain the same balance of Japanese character types (hiragana, katakana, and kanji) as in the original data. 11.
+
+11. output format:
+    - output only the data content, do not include descriptions or additional text.
+    - Separate each field with an appropriate delimiter (comma, tab, etc.) to maintain a consistent format.
+
+Generate dummy data based on these instructions to create a data set that allows comprehensive testing of the system while protecting the confidentiality of the original data. Please generate only the data content as raw csv so that the output can be used directly as a data file
+Don't write Note.

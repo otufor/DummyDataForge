@@ -5,11 +5,14 @@ services:
     volumes:
       - ./input:/app/input  # ローカルの input ディレクトリをコンテナ内の /app/input にマウント
       - ./output:/app/output  # ローカルの output ディレクトリをコンテナ内の /app/output にマウント
+      - ./config:/app/config  # ローカルの config ディレクトリをコンテナ内の /app/config にマウント
+      - ./src:/app/src  # ローカルの config ディレクトリをコンテナ内の /app/config にマウント
+      - ./tests:/app/tests  # ローカルの config ディレクトリをコンテナ内の /app/config にマウント
     depends_on:
       ollama:
         condition: service_healthy  # ollama サービスがヘルスチェックに合格した後に起動
     restart: "no"  # コンテナが停止したとき自動再起動しない
-    command: python /app/dummydataforge.py
+    command: python /app/src/dummydataforge.py
     networks:
       - ollama-network
 
